@@ -23,10 +23,7 @@ public class MainActivity extends Activity {
     private static IntentFilter[] mFilters;
     private static String[][] mTechLists;
 
-    private EditText et1, et2, et3, et4, et5, et6;
-    private EditText et11, et12, et13, et14, et15, et16;
-
-    private TextView info, errors;
+    private TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +80,32 @@ public class MainActivity extends Activity {
         resolveIntent(intent);
     }
 
+    public class DispParam {
+        public byte[] display_data;
+
+        DispParam() {
+            display_data = new byte[]{};
+        }
+    }
+
+    public void TransceiveEmuCard(DispParam disp_data, byte[] writeStream, NfcA tag) throws IOException {
+
+        byte[] received_data;
+
+        received_data = tag.transceive(writeStream);
+        disp_data.display_data = concatenateByteArrays(disp_data.display_data, "[".toString().getBytes());
+        disp_data.display_data = concatenateByteArrays(disp_data.display_data, new Integer(received_data.length).toString().getBytes());
+        disp_data.display_data = concatenateByteArrays(disp_data.display_data, "] : ".toString().getBytes());
+
+        if (received_data.length > 1) {
+            disp_data.display_data = concatenateByteArrays(disp_data.display_data, received_data);
+        } else {
+            Integer i = (int)received_data[0];
+            disp_data.display_data = concatenateByteArrays(disp_data.display_data, i.toString().getBytes());
+        }
+        disp_data.display_data = concatenateByteArrays(disp_data.display_data, "\r\n".toString().getBytes());
+    }
+
     /**
      * Resolves intent after discovered mifare tag
      * @param intent
@@ -96,39 +119,58 @@ public class MainActivity extends Activity {
 
                 Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 NfcA tag = NfcA.get(tagFromIntent);
-                byte[] data = {};
-                byte[] data_block = {};
-                byte[] block_num = {0x30, 0x30};
-                byte[] dataSizeLeft = {(byte)'\r', (byte)'\n', (byte)'['};
-                byte[] dataSizeRight = {(byte)']', (byte)':', (byte)' '};
-                byte[] tag_cmd = {0x30, 0};
+;
+                DispParam display = new DispParam();
+                preview(display.display_data);
+
+                byte[] new_line = {(byte)'\r', (byte)'\n'};
+
+                byte byWrCmd = (byte)0xEA;
+                byte byRdCmd = (byte)0xEB;
+                byte byResponseOk = (byte)0xE1;
+                byte byResponseFail = (byte)0xE0;
+                byte[] wr_cmd = {byWrCmd, 0, 60};
+                byte[] wr_cmdA = {byWrCmd, 0, 60};
+                byte[] wr_cmd2 = {byWrCmd, 16, 20};
+                byte[] rd_cmd = {byRdCmd, 0, 60};
 
                 int blocks;
+
+                for (byte i = 0; i < 60; i++) {
+                    byte[] tmp = {(byte)(i + 64)};
+                    wr_cmd = concatenateByteArrays(wr_cmd, tmp);
+                }
+
+                for (byte i = 0; i < 60; i++) {
+                    byte[] tmp = {(byte)60};
+                    wr_cmdA = concatenateByteArrays(wr_cmdA, tmp);
+                }
+
+                for (byte i = 0; i < 20; i++) {
+                    byte[] tmp = {(byte)64};
+                    wr_cmd2 = concatenateByteArrays(wr_cmd2, tmp);
+                }
 
                 try {
 
                     tag.connect();
 
-                    for (blocks = 0; blocks < 16; blocks += 4) {
-                        tag_cmd[1] = (byte)blocks;
+                    TransceiveEmuCard(display, wr_cmdA, tag);
+                    TransceiveEmuCard(display, rd_cmd, tag);
 
-                        data_block = tag.transceive(tag_cmd);
-                        data = concatenateByteArrays(data, dataSizeLeft);
-                        if (data_block.length < 10) {
-                            block_num[1] = (byte)(0x30 + data_block.length);
-                        } else {
-                            block_num[0] = (byte)(0x30 + data_block.length / 10);
-                            block_num[1] = (byte)(0x30 + data_block.length % 10);
-                        }
-                        data = concatenateByteArrays(data, block_num);
-                        data = concatenateByteArrays(data, dataSizeRight);
-                        data = concatenateByteArrays(data, data_block);
-                    }
+                    TransceiveEmuCard(display, wr_cmd, tag);
+                    TransceiveEmuCard(display, rd_cmd, tag);
 
-                    preview(data);
+                    TransceiveEmuCard(display, wr_cmd2, tag);
+                    TransceiveEmuCard(display, rd_cmd, tag);
+
+                    preview(display.display_data);
 
                 } catch (IOException e) {
                     preview(e.getLocalizedMessage());
+                    display.display_data = concatenateByteArrays(display.display_data, new_line);
+                    display.display_data = concatenateByteArrays(display.display_data, e.toString().getBytes());
+                    preview(display.display_data);
                 }
             }
         }

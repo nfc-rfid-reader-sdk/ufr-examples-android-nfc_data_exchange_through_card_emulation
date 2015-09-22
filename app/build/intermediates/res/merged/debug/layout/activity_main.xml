@@ -27,7 +27,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number"
-                    android:text="Custom message" >
+                    android:text="v1.0 Custom message" >
 
                     <requestFocus android:layout_width="wrap_content" />
 
