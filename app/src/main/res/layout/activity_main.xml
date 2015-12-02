@@ -56,8 +56,7 @@
                     android:id="@+id/rbMessage1"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:onClick="onRadioButtonClicked"
-                    android:nestedScrollingEnabled="true" />
+                    android:onClick="onRadioButtonClicked" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -107,7 +106,7 @@
             android:layout_height="365dp"
             android:text="Response..."
             android:gravity="center_horizontal"
-            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+            android:textAppearance="@android:style/TextAppearance.Large" />
 
     </LinearLayout>
 
