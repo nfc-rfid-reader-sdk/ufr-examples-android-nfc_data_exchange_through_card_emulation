@@ -1,4 +1,4 @@
-package net.dlogic.android.nfc.nfctagemudataexchange;
+package net.dlogic.android.nfc.nfc_data_exchange_through_card_emulation;
 
 import android.app.Activity;
 import android.nfc.tech.NfcA;
@@ -141,12 +141,12 @@ public class MainActivity extends Activity {
         if (received_data.length > 1) {
         //    disp_data.display_data = concatenateByteArrays(disp_data.display_data, received_data);
 
-            boolean not_equal_array=false;
+            boolean not_equal_array = false;
             if (previous_received_data.length <= received_data.length) {
                 for (int f = 0; f < previous_received_data.length; f++) {
                     Integer j = (int) received_data[f];
                     Integer k = (int) previous_received_data[f];
-                    if (j!=k){
+                    if (j != k){
                         not_equal_array=true;
                         break;
                     }
@@ -160,17 +160,17 @@ public class MainActivity extends Activity {
                 previous_received_data=received_data;
                 Integer i = (int) received_data[0];
                 if (i == 0) {
-                    String iamandroid="";
-                    if (message_to_send==1){
-                        iamandroid="Hey PC where are you?";
+                    String iamandroid = "";
+                    if (message_to_send == 1){
+                        iamandroid = "Hey PC where are you?";
                     }
-                    if (message_to_send==2){
-                        iamandroid="I am Android phone";
+                    if (message_to_send == 2){
+                        iamandroid = "I am Android phone";
                     }
-                    if (message_to_send==3){
-                        iamandroid=inputText.getText().toString();
+                    if (message_to_send == 3){
+                        iamandroid = inputText.getText().toString();
                     }
-                    byte[] tmp=iamandroid.toString().getBytes();
+                    byte[] tmp = iamandroid.toString().getBytes();
 
 
             //        tmp = {(byte) 'I', (byte) ' ', (byte) 'a', (byte) 'm', (byte) ' ', (byte) 'a', (byte) 'n', (byte) 'd', (byte) 'r', (byte) 'o', (byte) 'i', (byte) 'd',

@@ -1,4 +1,4 @@
-package net.dlogic.android.nfc.nfctagemudataexchange;
+package net.dlogic.android.nfc.nfc_data_exchange_through_card_emulation;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
