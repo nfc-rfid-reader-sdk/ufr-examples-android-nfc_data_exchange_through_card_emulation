@@ -5,5 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="byteff">255</string>
+    <string name="custom_message">v1.0 Custom message</string>
+    <string name="radio_option1">&quot;Hey PC where are you?&quot;</string>
+    <string name="radio_option2">&quot;I am Android phone&quot;</string>
+    <string name="radio_option_custom">Custom message</string>
+    <string name="response_label">RESPONSE:</string>
 
 </resources>
