@@ -7,8 +7,8 @@ android {
         applicationId "net.dlogic.android.nfc.nfc_data_exchange_through_card_emulation"
         minSdkVersion 15
         targetSdkVersion 15
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
