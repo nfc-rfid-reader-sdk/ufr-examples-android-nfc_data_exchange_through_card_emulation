@@ -333,7 +333,7 @@ public class MainActivity extends Activity {
 
         // Check which radio button was clicked
         switch(view.getId()) {
-            case R.id.rbMessage1:
+            case R.id.radioButton1:
                 if (checked)
                     message_to_send=1;
                     break;

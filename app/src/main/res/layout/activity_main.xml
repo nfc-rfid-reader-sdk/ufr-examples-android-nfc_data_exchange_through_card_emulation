@@ -1,113 +1,145 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView01"
+    android:id="@+id/mainLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MainActivity" >
+    android:background="@drawable/background_android"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:weightSum="20"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/LinearLayout01"
-        android:layout_width="match_parent"
+        android:id="@+id/leftLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="13"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clickable="true">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <EditText
-                    android:id="@+id/etMessage1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:text="v1.0 Custom message" >
-
-                    <requestFocus android:layout_width="wrap_content" />
-
-                </EditText>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/etMessage1"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="________________________________________"
-                android:id="@+id/lbLine1"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1" />
+                android:ems="10"
+                android:inputType="text"
+                android:text="@string/custom_message"
+                android:textColor="#8bc440"
+                android:background="#00000000">
+
+                <requestFocus android:layout_width="wrap_content" />
+
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="3dp"
+                android:background="#8bc440" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
+                android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/radioButton1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hey PC where are you?&quot;"
-                    android:id="@+id/rbMessage1"
                     android:layout_weight="1"
+                    android:button="@null"
                     android:checked="true"
-                    android:onClick="onRadioButtonClicked" />
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="5dp"
+                    android:text="@string/radio_option1"
+                    android:textColor="#8bc440"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/radio_button"/>
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="&quot;I am Android phone&quot;"
                     android:id="@+id/radioButton2"
-                    android:checked="false"
-                    android:onClick="onRadioButtonClicked" />
-
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Custom message"
+                    android:button="@null"
+                    android:checked="false"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="5dp"
+                    android:text="@string/radio_option2"
+                    android:textColor="#8bc440"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/radio_button"/>
+
+                <RadioButton
                     android:id="@+id/radioButton3"
-                    android:onClick="onRadioButtonClicked" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:onClick="onRadioButtonClicked"
+                    android:padding="5dp"
+                    android:text="@string/radio_option_custom"
+                    android:textColor="#8bc440"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/radio_button"/>
 
             </RadioGroup>
         </LinearLayout>
 
         <EditText
-            android:layout_width="257dp"
-            android:layout_height="34dp"
             android:id="@+id/editCustomMessage"
-            android:layout_gravity="center_horizontal"
-            android:background="#fffdbc" />
-
-        <TextView
+            android:background="@drawable/transparent_text_field"
+            android:inputType="text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="________________________________________"
-            android:id="@+id/lbLine2"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal" />
+            android:padding="5dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Response:"
             android:id="@+id/lbResponse"
-            android:layout_gravity="center_horizontal" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/response_label"
+            android:textColor="#8bc440"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="3dp"
+            android:background="#8bc440" />
+
 
         <TextView
             android:id="@+id/info"
             android:layout_width="match_parent"
-            android:layout_height="365dp"
-            android:text="Response..."
-            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Large" />
 
     </LinearLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/rightLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="horizontal"
+        android:gravity="left">
+
+    </LinearLayout>
+
+</LinearLayout>
