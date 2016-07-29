@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 15
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "net.dlogic.android.nfc.nfc_data_exchange_through_card_emulation"
         minSdkVersion 15
