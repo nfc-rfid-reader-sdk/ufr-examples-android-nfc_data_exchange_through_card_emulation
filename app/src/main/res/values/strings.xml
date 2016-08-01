@@ -2,10 +2,10 @@
 <resources>
 
     <string name="app_name">NFC phone 2 PC communication</string>
+    <string name="title_activity_main">NFC phone 2 PC communication 1.2</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="byteff">255</string>
-    <string name="custom_message">v1.0 Custom message</string>
     <string name="radio_option1">\"Hey PC where are you?\"</string>
     <string name="radio_option2">\"I am Android phone\"</string>
     <string name="radio_option_custom">Custom message</string>

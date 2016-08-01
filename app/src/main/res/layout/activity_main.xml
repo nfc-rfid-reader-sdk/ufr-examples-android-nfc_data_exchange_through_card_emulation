@@ -25,19 +25,15 @@
             android:orientation="vertical"
             android:clickable="true">
 
-            <EditText
+            <TextView
                 android:id="@+id/etMessage1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="@string/custom_message"
+                android:textSize="18sp"
+                android:text="@string/title_activity_main"
                 android:textColor="#8bc440"
                 android:background="#00000000">
-
-                <requestFocus android:layout_width="wrap_content" />
-
-            </EditText>
+            </TextView>
 
             <View
                 android:layout_width="match_parent"
