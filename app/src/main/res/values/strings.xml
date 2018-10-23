@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">NFC phone 2 PC communication</string>
-    <string name="title_activity_main">NFC phone 2 PC communication 1.2</string>
+    <string name="title_activity_main">NFC phone 2 PC communication 1.4</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="byteff">255</string>
